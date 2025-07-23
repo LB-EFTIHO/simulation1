@@ -2,8 +2,15 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- 모바일 최적화: 뷰포트 설정 이미 되어있음 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>가상공장 시뮬레이션 시작 화면</title>
+
+  <!-- 브라우저 렌더링 최적화 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
   <style>
     * {
       box-sizing: border-box;
@@ -17,6 +24,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      -webkit-font-smoothing: antialiased; /* 모바일에서 폰트 부드럽게 */
+      -moz-osx-font-smoothing: grayscale;
     }
     .container {
       width: 90%;
@@ -27,12 +36,16 @@
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 0 15px #00aaff88;
+      /* 모바일에서 가로 스크롤 방지 */
+      max-height: 90vh;
+      flex-wrap: wrap; /* 작은 화면에서 아래로 내려가도록 */
     }
     .left-panel {
       flex: 1;
       background: url('https://cdn-icons-png.flaticon.com/512/3887/3887872.png') no-repeat center;
       background-size: contain;
       filter: drop-shadow(0 0 8px #00aaff);
+      min-height: 250px; /* 모바일에서 최소 높이 지정 */
     }
     .right-panel {
       flex: 1;
@@ -41,11 +54,14 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
+      min-height: 250px;
+      text-align: center; /* 모바일에서 텍스트 중앙 정렬 */
     }
     h1 {
       margin-bottom: 40px;
       font-weight: 700;
       color: #00aaff;
+      font-size: 2rem;
     }
     button {
       background-color: #00aaff;
@@ -58,9 +74,32 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
       box-shadow: 0 4px 8px #00aaff88;
+      width: 100%;
+      max-width: 300px;
     }
     button:hover {
       background-color: #008fcc;
+    }
+
+    /* 반응형: 화면 너비 600px 이하일 때 */
+    @media (max-width: 600px) {
+      .container {
+        height: auto; /* 높이 자동 */
+        flex-direction: column;
+      }
+      .left-panel, .right-panel {
+        flex: none;
+        width: 100%;
+        min-height: 200px;
+      }
+      h1 {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+      }
+      button {
+        font-size: 1.1rem;
+        padding: 12px 30px;
+      }
     }
   </style>
 </head>
