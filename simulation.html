@@ -2,18 +2,32 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- 모바일 최적화: 확대 제한 및 초기 배율 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <!-- IE 렌더링 모드 최신으로 설정 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>공장 시뮬레이션</title>
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: #f5f5f5;
+      color: #222;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .content {
-      padding: 40px;
+      padding: 40px 20px;
       text-align: center;
+      max-width: 800px;
+      width: 90%;
     }
 
     /* 오른쪽 아래 버튼 */
@@ -25,16 +39,33 @@
       color: white;
       border: none;
       border-radius: 6px;
-      padding: 10px 16px;
-      font-size: 14px;
+      padding: 12px 18px;
+      font-size: 16px;
       cursor: pointer;
-      opacity: 0.8;
+      opacity: 0.85;
       transition: all 0.2s ease-in-out;
+      box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+      touch-action: manipulation;
     }
 
-    .back-button:hover {
+    .back-button:hover,
+    .back-button:focus {
       opacity: 1;
       transform: scale(1.05);
+      outline: none;
+    }
+
+    /* 반응형: 화면 너비 480px 이하일 때 */
+    @media (max-width: 480px) {
+      .content {
+        padding: 20px 15px;
+      }
+      .back-button {
+        bottom: 15px;
+        right: 15px;
+        padding: 10px 14px;
+        font-size: 14px;
+      }
     }
   </style>
 </head>
